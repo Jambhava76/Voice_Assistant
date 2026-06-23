@@ -1,0 +1,14 @@
+flowchart TD
+    User["User Voice or Text"] --> Frontend["Next.js Dashboard"]
+    User --> CLI["Desktop CLI"]
+    Frontend --> Auth["JWT Auth"]
+    Frontend --> API["FastAPI API"]
+    CLI --> Service["Assistant Service"]
+    API --> Service
+    Service --> Detector["Intent Detector"]
+    Detector --> NLP["NLP Processor"]
+    Service --> Executor["Command Execution Engine"]
+    Service --> Memory["Context Manager"]
+    Executor --> Plugins["Plugin Registry"]
+    Service --> Repo["SQLite Repository"]
+    Repo --> DB["voice_assistant.db"]

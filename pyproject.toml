@@ -1,0 +1,25 @@
+[project]
+name = "jarvis-enterprise-voice-assistant"
+version = "1.0.0"
+description = "Enterprise AI Voice Assistant platform with FastAPI backend and Next.js dashboard."
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.115.0",
+  "uvicorn[standard]>=0.32.0",
+  "pydantic[email]>=2.10.0",
+  "speechrecognition>=3.10.0",
+  "pyttsx3>=2.90",
+  "wikipedia>=1.4.0",
+  "requests>=2.32.0"
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

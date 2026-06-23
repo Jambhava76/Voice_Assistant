@@ -1,0 +1,9 @@
+flowchart LR
+    Browser["Browser"] --> Vercel["Vercel or CloudFront"]
+    Vercel --> Frontend["Next.js App"]
+    Frontend --> Gateway["API Gateway or Ingress"]
+    Gateway --> Backend["FastAPI Backend"]
+    Backend --> DB["PostgreSQL or SQLite"]
+    Backend --> Cache["Redis Cache"]
+    Backend --> Queue["Workflow Queue"]
+    Backend --> AI["AI Provider or AI Engine Service"]
