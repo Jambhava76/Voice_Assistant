@@ -1,374 +1,392 @@
-# Jarvis Enterprise AI Voice Assistant
+# 🚀 JARVIS ENTERPRISE AI VOICE ASSISTANT
 
-Jarvis is a production-ready AI Voice Assistant platform with a clean Python backend, modular AI engine, and a futuristic Next.js dashboard. It upgrades the original desktop voice assistant into a scalable portfolio project with enterprise architecture, authentication, command memory, analytics, workflow automation, plugin support, and deployment assets.
+<div align="center">
 
-## Highlights
+### 🎙️ Next-Generation AI-Powered Virtual Assistant Platform
 
-- FastAPI backend with controllers, services, repositories, security, configuration, and structured exceptions.
-- AI engine modules for speech recognition, text-to-speech, NLP, intent detection, command execution, context memory, workflows, and plugins.
-- Next.js, React, TypeScript, Tailwind CSS, ShadCN-compatible UI, Framer Motion, Three.js, GSAP, Zustand, and React Query frontend.
-- Interactive AI voice orb, particle field, waveform visualizer, command console, status dashboard, preferences, notifications, analytics, and recommendations.
-- JWT authentication, role-based authorization, SQLite persistence, environment-driven configuration, Docker, Kubernetes, GitHub Actions, Vercel-ready frontend, and AWS-friendly containers.
+Transforming Natural Language into Intelligent Actions Through Voice, AI, and Automation
 
-## Architecture
+![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge\&logo=python\&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?style=for-the-badge\&logo=fastapi\&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-15-000000?style=for-the-badge\&logo=next.js\&logoColor=white)
+![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge\&logo=react\&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge\&logo=typescript\&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge\&logo=docker\&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-Cloud_Ready-FF9900?style=for-the-badge\&logo=amazonaws\&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-success?style=for-the-badge)
+
+</div>
+
+---
+
+## 🌟 Overview
+
+**Jarvis Enterprise AI Voice Assistant** is a production-grade AI-powered virtual assistant engineered using modern software architecture principles. It combines speech recognition, natural language processing, intelligent automation, contextual memory, workflow orchestration, analytics, and a futuristic web dashboard into a unified platform.
+
+Designed as an enterprise-ready portfolio project, Jarvis demonstrates expertise in:
+
+* Artificial Intelligence
+* Full Stack Development
+* REST API Engineering
+* Cloud-Native Architecture
+* Authentication & Security
+* DevOps & CI/CD
+* Scalable Software Design
+
+---
+
+# ✨ Key Features
+
+### 🎙️ Voice Intelligence
+
+* Real-Time Speech Recognition
+* Natural Language Understanding
+* Wake Word Detection
+* Speech-to-Text Processing
+* Text-to-Speech Responses
+* Multi-Command Processing
+
+### 🧠 AI Engine
+
+* Intent Recognition
+* Context-Aware Conversations
+* Command Understanding
+* Smart Recommendations
+* Adaptive Response Generation
+* Memory Management System
+
+### ⚡ Automation Framework
+
+* Application Launching
+* Browser Automation
+* Search Automation
+* Workflow Execution
+* Task Scheduling
+* Plugin Architecture
+
+### 🔐 Security Layer
+
+* JWT Authentication
+* Role-Based Access Control (RBAC)
+* Secure Password Hashing
+* Protected API Routes
+* Environment-Based Secrets
+
+### 📊 Analytics Dashboard
+
+* User Activity Tracking
+* Command Analytics
+* AI Usage Insights
+* Productivity Metrics
+* Personalized Recommendations
+
+---
+
+# 🏗 Enterprise Architecture
+
+```text
+┌────────────────────────────────────────────┐
+│               FRONTEND LAYER               │
+│    Next.js + React + TypeScript + UI       │
+└──────────────────┬─────────────────────────┘
+                   │
+                   ▼
+┌────────────────────────────────────────────┐
+│             FASTAPI API GATEWAY            │
+└──────────────────┬─────────────────────────┘
+                   │
+     ┌─────────────┼─────────────┐
+     ▼             ▼             ▼
+
+Authentication   AI Engine    Analytics
+
+     ▼             ▼             ▼
+
+JWT Security    NLP Module   Insights
+
+RBAC           Intent AI     Reports
+
+     ▼             ▼             ▼
+
+Database      Memory Engine  Dashboard
+
+                   ▼
+
+          Command Execution
+
+                   ▼
+
+          External Services
+```
+
+---
+
+# 🛠 Technology Stack
+
+## Backend
+
+* Python
+* FastAPI
+* SQLAlchemy
+* JWT Authentication
+* Pydantic
+* Dependency Injection
+* Repository Pattern
+
+## Artificial Intelligence
+
+* Speech Recognition
+* NLP Processing
+* Intent Classification
+* Context Memory
+* Voice Synthesis
+* Recommendation Engine
+
+## Frontend
+
+* Next.js 15
+* React 18
+* TypeScript
+* Tailwind CSS
+* Zustand
+* React Query
+* Framer Motion
+* GSAP
+* Three.js
+
+## Database
+
+* SQLite
+* PostgreSQL Ready
+
+## DevOps
+
+* Docker
+* Docker Compose
+* Kubernetes
+* GitHub Actions
+* Vercel Deployment
+* AWS Ready Infrastructure
+
+---
+
+# 📂 Project Structure
 
 ```text
 Voice_Assistant/
+│
 ├── backend/
-│   └── app/
-│       ├── controllers/
-│       ├── services/
-│       ├── models/
-│       ├── repositories/
-│       ├── utilities/
-│       ├── configurations/
-│       └── security/
+│   ├── controllers/
+│   ├── services/
+│   ├── repositories/
+│   ├── models/
+│   ├── security/
+│   └── configurations/
+│
 ├── ai_engine/
 │   ├── speech_recognition/
 │   ├── text_to_speech/
 │   ├── nlp/
 │   ├── intent_detection/
-│   ├── command_execution/
-│   ├── context_management/
+│   ├── memory/
 │   └── plugins/
+│
 ├── frontend/
 │   ├── app/
 │   ├── components/
-│   ├── hooks/
 │   ├── services/
 │   ├── store/
-│   ├── styles/
-│   ├── assets/
-│   ├── lib/
-│   └── types/
+│   ├── hooks/
+│   └── assets/
+│
 ├── deploy/
 │   ├── docker/
 │   └── kubernetes/
+│
 ├── docs/
 ├── scripts/
-└── tests/
+├── tests/
+└── README.md
 ```
 
-## Quick Start For Windows
+---
 
-Use **PowerShell** or **Command Prompt**. The backend and frontend are two separate servers, so keep two terminals open.
+# 🚀 Quick Start
 
-### 1. Open the Project Folder
+## Clone Repository
 
-If you are using **Command Prompt**, use `/d` so Windows actually switches from `C:` to `D:`.
+```bash
+git clone https://github.com/Jambhava76/Voice_Assistant.git
 
-```cmd
-cd /d D:\Projects\Voice_Assistant
+cd Voice_Assistant
 ```
 
-If you are using **PowerShell**, this also works:
+## Create Virtual Environment
 
-```powershell
-Set-Location -LiteralPath D:\Projects\Voice_Assistant
-```
-
-### 2. Create Environment File
-
-Run this once:
-
-```powershell
-Copy-Item .env.example .env
-```
-
-The default demo login is:
-
-```text
-admin@example.com / admin123
-```
-
-### 3. Install Backend Dependencies
-
-Run this once from the project root:
-
-```powershell
+```bash
 python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
 ```
 
-### 4. Install Frontend Dependencies
+## Activate Environment
 
-Run this once:
+### Windows
 
-```powershell
-cd /d D:\Projects\Voice_Assistant\frontend
-& "C:\Program Files\nodejs\npm.cmd" install
+```bash
+.venv\Scripts\activate
 ```
 
-If that path does not exist, install Node.js from:
+### Linux / Mac
+
+```bash
+source .venv/bin/activate
+```
+
+## Install Dependencies
+
+```bash
+pip install -r requirements-dev.txt
+```
+
+## Start Backend
+
+```bash
+uvicorn backend.app.main:app --host 0.0.0.0 --port 8000
+```
+
+## Start Frontend
+
+```bash
+cd frontend
+
+npm install
+
+npm run dev
+```
+
+---
+
+# 📡 API Endpoints
+
+| Method | Endpoint                   | Description       |
+| ------ | -------------------------- | ----------------- |
+| GET    | /api/v1/health             | Health Check      |
+| POST   | /api/v1/auth/login         | User Login        |
+| GET    | /api/v1/auth/me            | Current User      |
+| GET    | /api/v1/assistant/status   | Assistant Status  |
+| POST   | /api/v1/assistant/commands | Execute Commands  |
+| GET    | /api/v1/assistant/history  | Command History   |
+| GET    | /api/v1/dashboard/overview | Dashboard Metrics |
+| GET    | /api/v1/preferences        | User Preferences  |
+
+---
+
+# 🎯 Example Voice Commands
 
 ```text
-https://nodejs.org
+Open YouTube
+
+Search Python Full Stack Tutorial
+
+Tell Me Current Time
+
+Show System Status
+
+Run Workflow Automation
+
+Open GitHub
+
+Recommend Productivity Tips
+
+Show Dashboard Analytics
 ```
 
-## How To Run The Full Web Application
+---
 
-### Terminal 1: Start Backend
+# 📈 Why This Project Matters
 
-Open the first terminal:
+This project demonstrates:
 
-```powershell
-cd /d D:\Projects\Voice_Assistant
-.\.venv\Scripts\python.exe -m uvicorn backend.app.main:app --host 0.0.0.0 --port 8000
-```
+✅ Enterprise Software Engineering
 
-Keep this terminal open.
+✅ Artificial Intelligence Integration
 
-Backend health check:
+✅ Full Stack Development
 
-```text
-http://localhost:8000/api/v1/health
-```
+✅ REST API Design
 
-Backend API docs:
+✅ Authentication & Authorization
 
-```text
-http://localhost:8000/docs
-```
+✅ Cloud-Native Architecture
 
-### Terminal 2: Start Frontend
+✅ DevOps & Deployment
 
-Open a second terminal:
+✅ Database Engineering
 
-```powershell
-cd /d D:\Projects\Voice_Assistant\frontend
-& "C:\Program Files\nodejs\npm.cmd" run build
-& "C:\Program Files\nodejs\npm.cmd" run start -- -p 3000
-```
+✅ System Design Principles
 
-Keep this terminal open.
+✅ Production-Ready Documentation
 
-Open the app:
+---
 
-```text
-http://localhost:3000
-```
+# 🔮 Future Roadmap
 
-## Development Mode
+### Version 2.0
 
-Use this when actively changing frontend code:
+* Generative AI Integration
+* LLM-Powered Conversations
+* Multi-Language Support
+* Voice Cloning
 
-```powershell
-cd /d D:\Projects\Voice_Assistant\frontend
-& "C:\Program Files\nodejs\npm.cmd" run dev
-```
+### Version 3.0
 
-Then open:
+* Mobile Applications
+* Smart Home Integrations
+* Cloud Synchronization
+* Multi-Agent AI System
 
-```text
-http://localhost:3000
-```
+### Version 4.0
 
-If dev mode hangs or shows no output, use the production run commands:
+* Enterprise SaaS Platform
+* Microservices Architecture
+* AI Workflow Marketplace
+* Real-Time Team Collaboration
 
-```powershell
-& "C:\Program Files\nodejs\npm.cmd" run build
-& "C:\Program Files\nodejs\npm.cmd" run start -- -p 3000
-```
+---
 
-## LAN / Mobile Testing
+# 👨‍💻 Author
 
-The frontend also prints a Network URL like:
+## Buchigalla Jambavadattudu
 
-```text
-http://192.168.1.183:3000
-```
+Computer Science Engineer | Java Full Stack Developer | AI Enthusiast
 
-Open that URL on another device connected to the same Wi-Fi.
+### Connect With Me
 
-The frontend automatically connects to the backend on the same host:
+GitHub:
+https://github.com/Jambhava76
 
-```text
-http://192.168.1.183:8000/api/v1
-```
+LinkedIn:
+https://www.linkedin.com/in/buchigalla-jambavadattudu
 
-Make sure the backend was started with:
+Portfolio:
+https://buchigalla-jambavadattudu-portfolio.vercel.app
 
-```powershell
-.\.venv\Scripts\python.exe -m uvicorn backend.app.main:app --host 0.0.0.0 --port 8000
-```
+Email:
+[jambhava76@gmail.com](mailto:jambhava76@gmail.com)
 
-## Common Windows Problems
+---
 
-### Problem: Windows Shows "Select an app to open 'npm'"
+# ⭐ Support
 
-This means Windows is trying to open `npm` like a file instead of running the npm command.
+If you found this project useful, consider:
 
-Use `npm.cmd` explicitly:
+⭐ Starring the repository
 
-```powershell
-cd /d D:\Projects\Voice_Assistant\frontend
-& "C:\Program Files\nodejs\npm.cmd" run build
-& "C:\Program Files\nodejs\npm.cmd" run start -- -p 3000
-```
+🍴 Forking the project
 
-Do not type two commands together like this:
+🛠 Contributing to development
 
-```text
-npm run start -- -p 3000npm run build
-```
+📢 Sharing with the developer community
 
-Run commands one line at a time.
+---
 
-### Problem: npm Looks For `C:\Windows\System32\package.json`
-
-You are still in `C:\Windows\System32`.
-
-Use:
-
-```cmd
-cd /d D:\Projects\Voice_Assistant\frontend
-```
-
-Your prompt should become:
-
-```text
-D:\Projects\Voice_Assistant\frontend>
-```
-
-### Problem: `localhost:3000` Shows Nothing
-
-Check if the frontend server is running:
-
-```text
-http://localhost:3000
-```
-
-If it does not open, start frontend again:
-
-```powershell
-cd /d D:\Projects\Voice_Assistant\frontend
-& "C:\Program Files\nodejs\npm.cmd" run build
-& "C:\Program Files\nodejs\npm.cmd" run start -- -p 3000
-```
-
-### Problem: Frontend Says Backend Offline
-
-Check backend:
-
-```text
-http://localhost:8000/api/v1/health
-```
-
-If it fails, start backend:
-
-```powershell
-cd /d D:\Projects\Voice_Assistant
-.\.venv\Scripts\python.exe -m uvicorn backend.app.main:app --host 0.0.0.0 --port 8000
-```
-
-### Problem: Port Already In Use
-
-Stop existing processes or use another frontend port:
-
-```powershell
-cd /d D:\Projects\Voice_Assistant\frontend
-& "C:\Program Files\nodejs\npm.cmd" run start -- -p 3001
-```
-
-Then open:
-
-```text
-http://localhost:3001
-```
-
-## Database
-
-The app uses SQLite by default.
-
-Database file:
-
-```text
-D:\Projects\Voice_Assistant\data\voice_assistant.db
-```
-
-It stores:
-
-- Users
-- JWT login user seed
-- Command history
-- User preferences
-- Voice/theme/settings
-
-The database is created automatically when the backend starts.
-
-## Running the Desktop Assistant
-
-The legacy entry points now launch the refactored assistant runtime:
-
-```powershell
-python Jarvis.py
-```
-
-If speech libraries or microphone support are not available, the assistant falls back to typed commands.
-
-## Backend API
-
-Interactive OpenAPI docs are available after starting the backend:
-
-```text
-http://localhost:8000/docs
-```
-
-Primary endpoints:
-
-| Method | Endpoint | Purpose |
-| --- | --- | --- |
-| GET | `/api/v1/health` | Health check |
-| POST | `/api/v1/auth/login` | Demo JWT login |
-| GET | `/api/v1/auth/me` | Current user |
-| GET | `/api/v1/assistant/status` | Assistant runtime status |
-| POST | `/api/v1/assistant/commands` | Execute a text or voice command |
-| GET | `/api/v1/assistant/commands/history` | Command history |
-| GET | `/api/v1/dashboard/overview` | Dashboard analytics and activity |
-| GET | `/api/v1/dashboard/preferences` | User preferences |
-| PUT | `/api/v1/dashboard/preferences` | Save user preferences |
-
-## Example Commands
-
-```text
-open youtube
-search for python tutorial
-wikipedia artificial intelligence
-tell me the time
-system status
-run workflow automation
-recommend a shortcut
-```
-
-## Deployment
-
-Docker Compose:
-
-```powershell
-docker compose up --build
-```
-
-Kubernetes manifests are in `deploy/kubernetes`. Frontend deployment to Vercel only needs the `frontend` directory and `NEXT_PUBLIC_API_BASE_URL`.
-
-## Documentation
-
-- [Architecture](docs/ARCHITECTURE.md)
-- [API Reference](docs/API.md)
-- [Database Design](docs/DATABASE.md)
-- [Deployment Guide](docs/DEPLOYMENT.md)
-- [Contributing](docs/CONTRIBUTING.md)
-
-## Security Notes
-
-- Replace `JWT_SECRET`, `DEFAULT_USER_PASSWORD`, and SMTP values before deployment.
-- Keep `ENABLE_DESKTOP_ACTIONS=false` in server environments.
-- Add a managed identity provider for production users.
-- Move SQLite to PostgreSQL before multi-instance production traffic.
-
-## Author
-
-Buchigalla Jambavadattudu
-
-- GitHub: [https://github.com/Jambhava76](https://github.com/Jambhava76)
-- LinkedIn: [www.linkedin.com/in/buchigalla-jambavadattudu](http://www.linkedin.com/in/buchigalla-jambavadattudu)
-- Email: [jambhava76@gmail.com](mailto:jambhava76@gmail.com)
+### Building Intelligent Voice Experiences for the Future 🚀
