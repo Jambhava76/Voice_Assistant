@@ -8,7 +8,7 @@ export function Waveform({ state }: { state: AssistantState }) {
   const active = state === "listening" || state === "speaking";
 
   return (
-    <div className="flex h-20 items-center justify-center gap-1 rounded-lg border border-border/70 bg-background/34 px-3" aria-label="Voice waveform">
+    <div className="flex h-14 items-center justify-center gap-1 rounded-lg border border-border/70 bg-background/34 px-3" aria-label="Voice waveform">
       {bars.map((bar) => (
         <span
           key={bar}
@@ -17,7 +17,7 @@ export function Waveform({ state }: { state: AssistantState }) {
             active ? "animate-waveform bg-primary" : state === "thinking" ? "bg-secondary" : "bg-muted-foreground/35"
           )}
           style={{
-            height: `${18 + ((bar * 9) % 42)}px`,
+            height: `${10 + ((bar * 7) % 34)}px`,
             animationDelay: `${bar * 34}ms`,
             opacity: active ? 0.52 + ((bar % 5) * 0.09) : 0.42
           }}

@@ -49,7 +49,7 @@ export function CommandConsole() {
     },
     onSuccess: (data) => {
       setResponse(data);
-      speakText(data.response_text, preferences.speechRate);
+      speakText(data.response_text, preferences.speechRate, preferences.voice);
       executeBrowserAction(data);
       queryClient.invalidateQueries({ queryKey: ["dashboard-overview"] });
       setApiStatus("online");
@@ -107,7 +107,7 @@ export function CommandConsole() {
       const response = createBrowserResponse(command);
       addLocalTurn(response);
       executeBrowserAction(response);
-      speakText(response.response_text, preferences.speechRate);
+      speakText(response.response_text, preferences.speechRate, preferences.voice);
       window.setTimeout(() => setState("idle"), 1800);
     }, 450);
   }
@@ -122,9 +122,9 @@ export function CommandConsole() {
   }
 
   return (
-    <div className="space-y-4">
-      <form className="flex flex-col gap-3 sm:flex-row" onSubmit={submit}>
-        <label className="flex min-h-12 flex-1 items-center rounded-lg border border-border/70 bg-card/70 px-4">
+    <div className="space-y-3">
+      <form className="flex flex-col gap-2 sm:flex-row" onSubmit={submit}>
+        <label className="flex min-h-11 flex-1 items-center rounded-lg border border-border/70 bg-card/70 px-3">
           <input
             value={text}
             onChange={(event) => setText(event.target.value)}
@@ -148,13 +148,13 @@ export function CommandConsole() {
         </div>
       </form>
 
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+      <div className="grid grid-cols-2 gap-2 lg:grid-cols-4">
         {["open youtube", "system status", "run workflow", "search ai tools"].map((command) => (
           <Button
             key={command}
             type="button"
             variant="ghost"
-            className="h-9 justify-start border border-border/70 px-3 text-xs"
+            className="h-8 justify-start border border-border/70 px-2 text-xs"
             onClick={() => runQuickAction(command)}
           >
             <Play size={14} aria-hidden />
@@ -170,7 +170,7 @@ export function CommandConsole() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
-            className="rounded-lg border border-border/70 bg-background/48 p-4"
+            className="rounded-lg border border-border/70 bg-background/48 p-3"
           >
             <div className="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase text-muted-foreground">
               <span>{response.status}</span>

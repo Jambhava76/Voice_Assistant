@@ -18,13 +18,13 @@ export function VoiceOrb({ state }: { state: AssistantState }) {
   const Icon = stateCopy[state].icon;
 
   return (
-    <div className="relative mx-auto aspect-square w-full max-w-[300px] sm:max-w-[360px] xl:max-w-[430px]">
+    <div className="relative mx-auto aspect-square w-full max-w-[240px] sm:max-w-[280px] xl:max-w-[320px] 2xl:max-w-[360px]">
       <div className="absolute inset-0">
         <ParticleField state={state} />
       </div>
       <motion.div
         className={cn(
-          "absolute left-1/2 top-1/2 grid h-[54%] w-[54%] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/18 bg-gradient-to-br shadow-glow backdrop-blur-xl",
+          "absolute left-1/2 top-1/2 grid h-[52%] w-[52%] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/18 bg-gradient-to-br shadow-glow backdrop-blur-xl",
           stateCopy[state].tone
         )}
         animate={{
@@ -34,7 +34,7 @@ export function VoiceOrb({ state }: { state: AssistantState }) {
         transition={{ duration: state === "thinking" ? 2.4 : 2, repeat: Infinity, ease: "easeInOut" }}
       >
         <div className="grid h-[72%] w-[72%] place-items-center rounded-full border border-white/20 bg-background/56">
-          <Icon size={44} className="text-primary" aria-hidden />
+          <Icon size={34} className="text-primary" aria-hidden />
           <span className="sr-only">{stateCopy[state].label}</span>
         </div>
       </motion.div>

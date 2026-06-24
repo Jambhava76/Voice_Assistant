@@ -6,7 +6,7 @@ import type { DashboardOverview } from "@/types/assistant";
 
 export function StatusStrip({ overview }: { overview: DashboardOverview }) {
   return (
-    <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+    <div className="grid gap-3 sm:grid-cols-2 2xl:grid-cols-4">
       <MetricCard
         label="AI Assistant Status"
         value={overview.assistant.state}

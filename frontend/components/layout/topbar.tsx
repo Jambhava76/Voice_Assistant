@@ -15,15 +15,15 @@ export function Topbar() {
   }
 
   return (
-    <header className="sticky top-0 z-20 border-b border-border/60 bg-background/68 px-4 py-3 backdrop-blur-xl md:px-6">
+    <header className="sticky top-0 z-20 border-b border-border/60 bg-background/68 px-3 py-2.5 backdrop-blur-xl sm:px-4 lg:px-5">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-lg font-semibold sm:text-xl md:text-2xl">AI Voice Assistant Platform</h1>
+          <h1 className="text-lg font-semibold sm:text-xl">AI Voice Assistant Platform</h1>
           <p className="mt-1 hidden text-sm text-muted-foreground sm:block">Operations dashboard for commands, voice state, analytics, and automation.</p>
         </div>
 
         <div className="flex items-center gap-2">
-          <label className="hidden h-10 min-w-[260px] items-center gap-2 rounded-md border border-border/70 bg-card/70 px-3 md:flex">
+          <label className="hidden h-9 w-[240px] items-center gap-2 rounded-md border border-border/70 bg-card/70 px-3 lg:flex">
             <Search size={17} className="text-muted-foreground" aria-hidden />
             <input
               className="w-full bg-transparent text-sm outline-none placeholder:text-muted-foreground"

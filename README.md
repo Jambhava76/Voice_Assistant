@@ -49,55 +49,252 @@ Voice_Assistant/
 └── tests/
 ```
 
-## Quick Start
+## Quick Start For Windows
 
-1. Copy environment settings:
+Use **PowerShell** or **Command Prompt**. The backend and frontend are two separate servers, so keep two terminals open.
+
+### 1. Open the Project Folder
+
+If you are using **Command Prompt**, use `/d` so Windows actually switches from `C:` to `D:`.
+
+```cmd
+cd /d D:\Projects\Voice_Assistant
+```
+
+If you are using **PowerShell**, this also works:
+
+```powershell
+Set-Location -LiteralPath D:\Projects\Voice_Assistant
+```
+
+### 2. Create Environment File
+
+Run this once:
 
 ```powershell
 Copy-Item .env.example .env
 ```
 
-2. Install backend dependencies:
-
-```powershell
-python -m venv .venv
-.venv\Scripts\activate
-pip install -r requirements-dev.txt
-```
-
-3. Start the backend:
-
-```powershell
-python -m uvicorn backend.app.main:app --reload --port 8000
-```
-
-4. Install and start the frontend:
-
-```powershell
-cd frontend
-npm install
-npm run dev
-```
-
-5. Open the dashboard:
-
-```text
-http://localhost:3000
-```
-
-Or start the connected backend and frontend together on Windows:
-
-```powershell
-.\scripts\start-full-app.ps1
-```
-
-Default demo login used by the frontend:
+The default demo login is:
 
 ```text
 admin@example.com / admin123
 ```
 
-Change these values in `.env` before any real deployment.
+### 3. Install Backend Dependencies
+
+Run this once from the project root:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
+```
+
+### 4. Install Frontend Dependencies
+
+Run this once:
+
+```powershell
+cd /d D:\Projects\Voice_Assistant\frontend
+& "C:\Program Files\nodejs\npm.cmd" install
+```
+
+If that path does not exist, install Node.js from:
+
+```text
+https://nodejs.org
+```
+
+## How To Run The Full Web Application
+
+### Terminal 1: Start Backend
+
+Open the first terminal:
+
+```powershell
+cd /d D:\Projects\Voice_Assistant
+.\.venv\Scripts\python.exe -m uvicorn backend.app.main:app --host 0.0.0.0 --port 8000
+```
+
+Keep this terminal open.
+
+Backend health check:
+
+```text
+http://localhost:8000/api/v1/health
+```
+
+Backend API docs:
+
+```text
+http://localhost:8000/docs
+```
+
+### Terminal 2: Start Frontend
+
+Open a second terminal:
+
+```powershell
+cd /d D:\Projects\Voice_Assistant\frontend
+& "C:\Program Files\nodejs\npm.cmd" run build
+& "C:\Program Files\nodejs\npm.cmd" run start -- -p 3000
+```
+
+Keep this terminal open.
+
+Open the app:
+
+```text
+http://localhost:3000
+```
+
+## Development Mode
+
+Use this when actively changing frontend code:
+
+```powershell
+cd /d D:\Projects\Voice_Assistant\frontend
+& "C:\Program Files\nodejs\npm.cmd" run dev
+```
+
+Then open:
+
+```text
+http://localhost:3000
+```
+
+If dev mode hangs or shows no output, use the production run commands:
+
+```powershell
+& "C:\Program Files\nodejs\npm.cmd" run build
+& "C:\Program Files\nodejs\npm.cmd" run start -- -p 3000
+```
+
+## LAN / Mobile Testing
+
+The frontend also prints a Network URL like:
+
+```text
+http://192.168.1.183:3000
+```
+
+Open that URL on another device connected to the same Wi-Fi.
+
+The frontend automatically connects to the backend on the same host:
+
+```text
+http://192.168.1.183:8000/api/v1
+```
+
+Make sure the backend was started with:
+
+```powershell
+.\.venv\Scripts\python.exe -m uvicorn backend.app.main:app --host 0.0.0.0 --port 8000
+```
+
+## Common Windows Problems
+
+### Problem: Windows Shows "Select an app to open 'npm'"
+
+This means Windows is trying to open `npm` like a file instead of running the npm command.
+
+Use `npm.cmd` explicitly:
+
+```powershell
+cd /d D:\Projects\Voice_Assistant\frontend
+& "C:\Program Files\nodejs\npm.cmd" run build
+& "C:\Program Files\nodejs\npm.cmd" run start -- -p 3000
+```
+
+Do not type two commands together like this:
+
+```text
+npm run start -- -p 3000npm run build
+```
+
+Run commands one line at a time.
+
+### Problem: npm Looks For `C:\Windows\System32\package.json`
+
+You are still in `C:\Windows\System32`.
+
+Use:
+
+```cmd
+cd /d D:\Projects\Voice_Assistant\frontend
+```
+
+Your prompt should become:
+
+```text
+D:\Projects\Voice_Assistant\frontend>
+```
+
+### Problem: `localhost:3000` Shows Nothing
+
+Check if the frontend server is running:
+
+```text
+http://localhost:3000
+```
+
+If it does not open, start frontend again:
+
+```powershell
+cd /d D:\Projects\Voice_Assistant\frontend
+& "C:\Program Files\nodejs\npm.cmd" run build
+& "C:\Program Files\nodejs\npm.cmd" run start -- -p 3000
+```
+
+### Problem: Frontend Says Backend Offline
+
+Check backend:
+
+```text
+http://localhost:8000/api/v1/health
+```
+
+If it fails, start backend:
+
+```powershell
+cd /d D:\Projects\Voice_Assistant
+.\.venv\Scripts\python.exe -m uvicorn backend.app.main:app --host 0.0.0.0 --port 8000
+```
+
+### Problem: Port Already In Use
+
+Stop existing processes or use another frontend port:
+
+```powershell
+cd /d D:\Projects\Voice_Assistant\frontend
+& "C:\Program Files\nodejs\npm.cmd" run start -- -p 3001
+```
+
+Then open:
+
+```text
+http://localhost:3001
+```
+
+## Database
+
+The app uses SQLite by default.
+
+Database file:
+
+```text
+D:\Projects\Voice_Assistant\data\voice_assistant.db
+```
+
+It stores:
+
+- Users
+- JWT login user seed
+- Command history
+- User preferences
+- Voice/theme/settings
+
+The database is created automatically when the backend starts.
 
 ## Running the Desktop Assistant
 

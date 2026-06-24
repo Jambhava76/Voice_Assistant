@@ -12,6 +12,10 @@ function resolveApiBaseUrl() {
 
 const API_BASE_URL = resolveApiBaseUrl();
 
+export function getApiBaseUrl() {
+  return API_BASE_URL;
+}
+
 type RequestOptions = {
   token?: string;
   init?: RequestInit;
@@ -36,6 +40,10 @@ async function request<T>(path: string, { token, init }: RequestOptions = {}): P
 }
 
 export const assistantApi = {
+  async health() {
+    return request<{ status: string; timestamp: string }>("/health");
+  },
+
   async login(email: string, password: string) {
     return request<{ access_token: string; token_type: string; user: Record<string, unknown> }>("/auth/login", {
       init: {

@@ -8,14 +8,14 @@ export function VoiceSettingsPanel() {
   const { preferences, updatePreference } = useAssistantStore();
 
   return (
-    <Panel>
-      <div className="mb-4 flex items-center gap-2">
+    <Panel className="min-w-0 max-w-full p-3">
+      <div className="mb-3 flex items-center gap-2">
         <RadioTower size={18} className="text-primary" aria-hidden />
         <h2 className="text-sm font-semibold">Voice Settings</h2>
       </div>
-      <div className="space-y-4">
+      <div className="space-y-3">
         <label className="block">
-          <span className="mb-2 flex items-center gap-2 text-sm text-muted-foreground">
+          <span className="mb-1.5 flex items-center gap-2 text-sm text-muted-foreground">
             <Mic2 size={16} aria-hidden />
             Voice activity threshold: {preferences.vadThreshold}
           </span>
@@ -30,7 +30,7 @@ export function VoiceSettingsPanel() {
           />
         </label>
         <label className="block">
-          <span className="mb-2 text-sm text-muted-foreground">Speech rate: {preferences.speechRate}</span>
+          <span className="mb-1.5 text-sm text-muted-foreground">Speech rate: {preferences.speechRate}</span>
           <input
             className="w-full accent-secondary"
             type="range"
@@ -49,7 +49,7 @@ export function VoiceSettingsPanel() {
           ].map(([item, key]) => (
             <button
               key={item}
-              className="rounded-md border border-border/70 px-3 py-2 text-sm font-semibold hover:bg-muted data-[active=true]:bg-primary/14 data-[active=true]:text-primary"
+              className="rounded-md border border-border/70 px-2 py-1.5 text-sm font-semibold hover:bg-muted data-[active=true]:bg-primary/14 data-[active=true]:text-primary"
               data-active={preferences[key as "noiseSuppression" | "echoCancellation" | "vadEnabled"]}
               onClick={() =>
                 updatePreference(

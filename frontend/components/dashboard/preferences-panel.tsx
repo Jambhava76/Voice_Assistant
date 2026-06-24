@@ -1,14 +1,27 @@
 "use client";
 
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { Bell, Palette, SlidersHorizontal, Volume2 } from "lucide-react";
+import { Bell, Palette, Play, SlidersHorizontal, Volume2 } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Panel } from "@/components/ui/panel";
+import { Button } from "@/components/ui/button";
+import { getAvailableVoices, speakText } from "@/lib/browser-assistant";
 import { assistantApi } from "@/services/api-client";
 import { useAssistantStore } from "@/store/assistant-store";
 import type { UserPreferences } from "@/types/assistant";
 
 export function PreferencesPanel() {
   const { token, preferences, updatePreference, setApiStatus } = useAssistantStore();
+  const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
+
+  useEffect(() => {
+    function loadVoices() {
+      setVoices(getAvailableVoices());
+    }
+    loadVoices();
+    window.speechSynthesis?.addEventListener("voiceschanged", loadVoices);
+    return () => window.speechSynthesis?.removeEventListener("voiceschanged", loadVoices);
+  }, []);
 
   useQuery({
     queryKey: ["preferences", token],
@@ -48,8 +61,8 @@ export function PreferencesPanel() {
   }
 
   return (
-    <Panel>
-      <div className="mb-4 flex items-center justify-between">
+    <Panel className="min-w-0 max-w-full p-3">
+      <div className="mb-3 flex items-center justify-between gap-2">
         <h2 className="flex items-center gap-2 text-sm font-semibold">
           <SlidersHorizontal size={18} className="text-primary" aria-hidden />
           User Preferences
@@ -59,14 +72,14 @@ export function PreferencesPanel() {
         </span>
       </div>
 
-      <div className="grid gap-3 text-sm">
-        <label className="grid gap-2 rounded-lg border border-border/70 p-3">
-          <span className="flex items-center gap-2 text-muted-foreground">
+      <div className="grid min-w-0 gap-2 text-sm">
+        <label className="grid min-w-0 gap-1.5 rounded-md border border-border/70 p-2.5">
+          <span className="flex items-center gap-2 text-sm text-muted-foreground">
             <Palette size={16} aria-hidden />
             Theme
           </span>
           <select
-            className="h-9 rounded-md border border-border bg-background px-2"
+            className="h-8 w-full min-w-0 max-w-full rounded-md border border-border bg-background px-2 text-sm"
             value={preferences.theme}
             onChange={(event) => savePreference("theme", event.target.value as "system" | "dark" | "light")}
           >
@@ -75,23 +88,40 @@ export function PreferencesPanel() {
             <option value="system">System</option>
           </select>
         </label>
-        <label className="grid gap-2 rounded-lg border border-border/70 p-3">
-          <span className="flex items-center gap-2 text-muted-foreground">
+        <label className="grid min-w-0 gap-1.5 rounded-md border border-border/70 p-2.5">
+          <span className="flex items-center gap-2 text-sm text-muted-foreground">
             <Volume2 size={16} aria-hidden />
             Voice
           </span>
-          <select
-            className="h-9 rounded-md border border-border bg-background px-2"
-            value={preferences.voice}
-            onChange={(event) => savePreference("voice", event.target.value)}
-          >
-            <option value="professional_female">Professional Female</option>
-            <option value="deep_male">Deep Male</option>
-            <option value="neutral_fast">Neutral Fast</option>
-          </select>
+          <div className="flex min-w-0 max-w-full gap-2">
+            <select
+              className="h-8 min-w-0 max-w-full flex-1 truncate rounded-md border border-border bg-background px-2 text-sm"
+              value={preferences.voice}
+              onChange={(event) => savePreference("voice", event.target.value)}
+            >
+              {voices.length === 0 ? (
+                <option value={preferences.voice}>System default</option>
+              ) : (
+                voices.map((voice) => (
+                  <option key={voice.voiceURI} value={voice.name}>
+                    {voice.name} ({voice.lang})
+                  </option>
+                ))
+              )}
+            </select>
+            <Button
+              type="button"
+              variant="ghost"
+              className="h-8 w-8 shrink-0 px-0"
+              onClick={() => speakText("This is the selected assistant voice.", preferences.speechRate, preferences.voice)}
+              aria-label="Test selected voice"
+            >
+              <Play size={15} aria-hidden />
+            </Button>
+          </div>
         </label>
         <button
-          className="flex items-center justify-between rounded-lg border border-border/70 p-3 text-left hover:bg-muted"
+          className="flex min-w-0 items-center justify-between rounded-md border border-border/70 p-2.5 text-left text-sm hover:bg-muted"
           onClick={() => savePreference("commandConfirmation", !preferences.commandConfirmation)}
         >
           <span className="flex items-center gap-2 text-muted-foreground">

@@ -16,7 +16,7 @@ import { CommandConsole } from "@/components/assistant/command-console";
 import { VoiceOrb } from "@/components/assistant/voice-orb";
 import { Waveform } from "@/components/assistant/waveform";
 import { Panel } from "@/components/ui/panel";
-import { assistantApi } from "@/services/api-client";
+import { assistantApi, getApiBaseUrl } from "@/services/api-client";
 import { useAssistantStore } from "@/store/assistant-store";
 import { AmbientGradient } from "@/components/layout/ambient-gradient";
 import { cn } from "@/lib/utils";
@@ -61,7 +61,8 @@ export function DashboardShell() {
     if (token) return;
     setApiStatus("connecting");
     assistantApi
-      .login("admin@example.com", "admin123")
+      .health()
+      .then(() => assistantApi.login("admin@example.com", "admin123"))
       .then((session) => setSession(session.access_token, session.user))
       .catch(() => setApiStatus("offline"));
   }, [setApiStatus, setSession, token]);
@@ -97,30 +98,31 @@ export function DashboardShell() {
   };
 
   return (
-    <main className={cn("min-h-screen bg-background text-foreground", theme === "dark" && "dark")}>
+    <main className={cn("min-h-screen overflow-x-hidden bg-background text-foreground", theme === "dark" && "dark")}>
       <AmbientGradient />
-      <div className="mesh-grid flex min-h-screen">
+      <div className="mesh-grid flex min-h-screen min-w-0">
         <Sidebar />
-        <div className="min-w-0 flex-1">
+        <div className="min-w-0 flex-1 overflow-x-hidden">
           <Topbar />
-          <div className="space-y-4 p-3 sm:p-4 md:p-6">
+          <div className="mx-auto w-full max-w-[1500px] space-y-4 p-3 sm:p-4 lg:p-5">
             <StatusStrip overview={overview} />
 
-            <div className="grid gap-4 xl:grid-cols-[minmax(0,1.35fr)_minmax(360px,0.65fr)]">
+            <div className="grid min-w-0 gap-4 2xl:grid-cols-[minmax(0,1.15fr)_minmax(360px,0.85fr)]">
               <Panel className="gradient-border overflow-hidden p-0">
-                <div className="grid gap-4 p-3 sm:p-4 md:p-5 lg:min-h-[520px] lg:grid-cols-[minmax(260px,0.88fr)_minmax(320px,1.12fr)]">
+                <div className="grid min-w-0 gap-4 p-3 sm:p-4 lg:grid-cols-[minmax(320px,1fr)_minmax(280px,0.75fr)] 2xl:min-h-[480px]">
                   <div className="flex flex-col justify-between gap-5">
                     <div>
                       <div className="inline-flex items-center rounded-full border border-border/70 bg-card/70 px-3 py-1 text-xs font-semibold text-primary">
                         {overview.assistant.assistant_name} | {overview.assistant.locale}
                       </div>
-                      <h2 className="mt-4 text-xl font-semibold tracking-normal sm:text-2xl md:text-3xl">Voice Command Center</h2>
-                      <p className="mt-3 max-w-xl text-sm leading-6 text-muted-foreground">
+                      <h2 className="mt-3 text-xl font-semibold tracking-normal sm:text-2xl">Voice Command Center</h2>
+                      <p className="mt-2 max-w-xl text-sm leading-6 text-muted-foreground">
                         Control voice input, backend commands, SQLite history, preferences, analytics, and browser actions from one console.
                       </p>
                       <div className="mt-3 inline-flex rounded-md border border-border/70 bg-background/42 px-3 py-2 text-xs font-semibold">
                         Backend: {apiStatus === "online" ? "Connected to SQLite API" : "Offline fallback active"}
                       </div>
+                      <div className="mt-2 break-all text-xs text-muted-foreground">API URL: {getApiBaseUrl()}</div>
                     </div>
                     <Waveform state={state} />
                     <CommandConsole />
@@ -133,21 +135,21 @@ export function DashboardShell() {
                     </motion.div>
                   </div>
 
-                  <div className="order-first grid place-items-center rounded-lg border border-border/60 bg-background/22 p-2 lg:order-none">
+                  <div className="order-first grid min-h-[260px] place-items-center rounded-lg border border-border/60 bg-background/22 p-2 lg:order-none lg:min-h-0">
                     <VoiceOrb state={state} />
                   </div>
                 </div>
               </Panel>
 
-              <div className="grid gap-4">
+              <div className="grid min-w-0 gap-3 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] 2xl:grid-cols-1">
                 <PreferencesPanel />
                 <VoiceSettingsPanel />
               </div>
             </div>
 
-            <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_minmax(320px,0.48fr)]">
+            <div className="grid min-w-0 gap-4 2xl:grid-cols-[minmax(0,1fr)_minmax(320px,0.48fr)]">
               <ActivityFeed items={overview.recent_activities} />
-              <div className="grid gap-4">
+              <div className="grid min-w-0 gap-4 lg:grid-cols-3 2xl:grid-cols-1">
                 <AnalyticsPanel overview={overview} />
                 <NotificationCenter overview={overview} />
                 <RecommendationsPanel overview={overview} />

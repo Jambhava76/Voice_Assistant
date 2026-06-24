@@ -29,10 +29,24 @@ export function getSpeechRecognition() {
   return window.SpeechRecognition ?? window.webkitSpeechRecognition ?? null;
 }
 
-export function speakText(text: string, rate: number) {
+export function getAvailableVoices() {
+  if (typeof window === "undefined" || !window.speechSynthesis) return [];
+  return window.speechSynthesis.getVoices();
+}
+
+export function speakText(text: string, rate: number, voiceName?: string) {
   if (typeof window === "undefined" || !window.speechSynthesis) return;
   window.speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(text);
+  const voices = window.speechSynthesis.getVoices();
+  const selectedVoice =
+    voices.find((voice) => voice.name === voiceName) ??
+    voices.find((voice) => voice.voiceURI === voiceName) ??
+    voices.find((voice) => voice.lang.toLowerCase().startsWith("en"));
+  if (selectedVoice) {
+    utterance.voice = selectedVoice;
+    utterance.lang = selectedVoice.lang;
+  }
   utterance.rate = Math.min(Math.max(rate / 175, 0.65), 1.35);
   utterance.pitch = 1;
   window.speechSynthesis.speak(utterance);

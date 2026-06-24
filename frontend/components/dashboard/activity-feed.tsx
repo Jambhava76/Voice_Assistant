@@ -20,7 +20,7 @@ export function ActivityFeed({ items }: { items: CommandHistoryItem[] }) {
   }
 
   return (
-    <Panel className="min-h-[320px]">
+    <Panel className="min-h-[260px]">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
         <h2 className="flex items-center gap-2 text-sm font-semibold">
           <History size={18} className="text-primary" aria-hidden />
